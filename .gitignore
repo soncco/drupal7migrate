@@ -1,0 +1,11 @@
+db-data/
+drupal-data/7
+drupal-data/11
+
+node_modules
+
+.env
+
+.DS_Store
+yarn.lock
+*.gz

@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:8
+    env_file: .env
+    volumes:
+      - ./db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  drupal7:
+    build:
+      context: .
+      dockerfile: 7.Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./drupal-data/7/modules:/var/www/html/sites/all/modules
+      - ./drupal-data/7/themes:/var/www/html/sites/all/themes
+      - ./drupal-data/7/libraries:/var/www/html/sites/all/libraries
+      - ./drupal-data/files:/var/www/html/sites/default/files
+
+    env_file: .env
+    ports:
+      - "8000:80"
+
+  drupal11:
+    build:
+      context: .
+      dockerfile: 11.Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./drupal-data/11/modules:/var/www/html/modules
+      - ./drupal-data/11/themes:/var/www/html/themes
+      - ./drupal-data/11/libraries:/var/www/html/libraries
+      - ./drupal-data/files:/opt/drupal/web/sites/default/files
+    env_file: .env
+    ports:
+      - "9000:80"
+
+  pma:
+    image: phpmyadmin:latest
+    ports:
+      - "8800:80"
+    env_file: .env
