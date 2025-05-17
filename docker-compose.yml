@@ -19,7 +19,7 @@ services:
       - ./drupal-data/7/modules:/var/www/html/sites/all/modules
       - ./drupal-data/7/themes:/var/www/html/sites/all/themes
       - ./drupal-data/7/libraries:/var/www/html/sites/all/libraries
-      - ./drupal-data/files:/var/www/html/sites/default/files
+      - ./drupal-data/7/files:/var/www/html/sites/default/files
 
     env_file: .env
     ports:
@@ -35,7 +35,7 @@ services:
       - ./drupal-data/11/modules:/var/www/html/modules
       - ./drupal-data/11/themes:/var/www/html/themes
       - ./drupal-data/11/libraries:/var/www/html/libraries
-      - ./drupal-data/files:/opt/drupal/web/sites/default/files
+      - ./drupal-data/11/files:/opt/drupal/web/sites/default/files
     env_file: .env
     ports:
       - "9000:80"
